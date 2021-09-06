@@ -74,7 +74,7 @@ class FarmerController extends Controller
                 "launcher_id" => $item->launcher_id,
                 "points" => $item->points,
                 "percent"=> ($item->points / $total).'%',
-                "est_reward"=> (($item->points / $total) * 0.0172),
+                "est_reward"=> (($item->points / $total) * 0.0170),
                 "total_space" => (($total_space / 10.14) * 1.04951163)
             ];
         }));
