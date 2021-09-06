@@ -86,7 +86,7 @@ class FarmerController extends Controller
                 "points" => $item->points,
                 "percent"=> $item->points / $total,
                 "est_reward"=> ($item->points / $total) * 0.0175,
-                "total_space" => $total_space
+                "total_space" => ($total_space / 10.14)
             ];
         }));
     }
