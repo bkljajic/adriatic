@@ -20,12 +20,11 @@ class FarmerController extends Controller
         $partialId = '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b';
         $points = 4;
         $total_space = 0;
-        $block_timestamp =1630865072;
-
+        $block_timestamp = Partial::where('launcher_id', '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b')->where('points', '<', 3)->latest()->first();
         $returnData->map(function ($item) use ($block_timestamp, &$total_space) {
             $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'DESC')->first();
             if ($results) {
-                $time_now = 1630964922;
+                $time_now = now()->timestamp;
 
                 if ($results->timestamp < $block_timestamp) {
                     $farmerSpace = $item->points / ((0.0001157) * ($time_now - $results->timestamp));
@@ -37,7 +36,7 @@ class FarmerController extends Controller
             }
         });
 
-        return response()->json(["totalSpace" => ($total_space / 10.14) * 1.09951163]);
+        return response()->json(["totalSpace" => now()->timestamp]);
     }
 
     /**
@@ -48,7 +47,7 @@ class FarmerController extends Controller
     public function getFarmers()
     {
         $farmers = Farmer::get();
-        $block_timestamp =1630865072;
+        $block_timestamp = Partial::where('launcher_id', '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b')->where('points', '<', 3)->latest()->first();
         $total = 0;
         $farmers->map(function ($item) use ($block_timestamp, &$total) {
             $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'DESC')->first();
