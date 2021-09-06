@@ -17,6 +17,8 @@ class FarmerController extends Controller
     public function getFarmer()
     {
         $returnData = Farmer::get();
+        $activeFarmers = Farmer::where('points', '>', 0)->get();
+        $count = $activeFarmers->count();
         $total_space = 0;
         $block_timestamp = 1630865072;
         $returnData->map(function ($item) use ($block_timestamp, &$total_space) {
@@ -34,9 +36,9 @@ class FarmerController extends Controller
             }
         });
 
-        return response()->json(["totalSpace" => (($total_space / 10.14) * 1.04951163)]);
+        return response()->json(["totalSpace" => (($total_space / 10.14) * 1.04951163), "active_farmers"=>$count]);
     }
-
+   
     /**
      * Display a listing of the resource.
      *
