@@ -18,7 +18,7 @@ class FarmerController extends Controller
     {
         $returnData = Farmer::get();
         $total_space = 0;
-        $block_timestamp = Partial::where('launcher_id', '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b')->where('difficulty', '<=', 1)->orderBy('timestamp', 'DESC')->first();
+        $block_timestamp = Partial::where('launcher_id', '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b')->where('difficulty', '<=', 2)->orderBy('timestamp', 'DESC')->first();
         $returnData->map(function ($item) use ($block_timestamp, &$total_space) {
             $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'DESC')->first();
             if ($results) {
