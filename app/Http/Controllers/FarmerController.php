@@ -70,7 +70,7 @@ class FarmerController extends Controller
             $total_space = 0;
             $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'ASC')->first();
             if ($results) {
-                $time_now = $milliseconds = round(microtime(true) * 1000);
+                $time_now = 1630964922;
 
                 if ($results->timestamp < $block_timestamp) {
                     $farmerSpace = $item->points / ((0.0001157) * ($time_now - $results->timestamp));
