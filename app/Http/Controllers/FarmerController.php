@@ -23,7 +23,7 @@ class FarmerController extends Controller
         $block_timestamp =1630865072;
 
         $returnData->map(function ($item) use ($block_timestamp, &$total_space) {
-            $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'ASC')->first();
+            $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'DESC')->first();
             if ($results) {
                 $time_now = $milliseconds = round(microtime(true) * 1000);
 
@@ -51,7 +51,7 @@ class FarmerController extends Controller
         $block_timestamp =1630865072;
         $total = 0;
         $farmers->map(function ($item) use ($block_timestamp, &$total) {
-            $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'ASC')->first();
+            $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'DESC')->first();
             if ($results) {
                 $time_now = $milliseconds = round(microtime(true) * 1000);
 
