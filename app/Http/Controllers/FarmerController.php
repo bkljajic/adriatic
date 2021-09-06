@@ -34,7 +34,7 @@ class FarmerController extends Controller
             }
         });
 
-        return response()->json(["totalSpace" => (($total_space / 10.14) * 1.09951163)]);
+        return response()->json(["totalSpace" => (($total_space / 10.14) * 1.04951163)]);
     }
 
     /**
@@ -81,9 +81,9 @@ class FarmerController extends Controller
             return [
                 "launcher_id" => $item->launcher_id,
                 "points" => $item->points,
-                "percent"=> $item->points / $total,
-                "est_reward"=> ($item->points / $total) * 0.0175,
-                "total_space" => (($total_space / 10.14) * 1.09951163)
+                "percent"=> ($item->points / $total).'%',
+                "est_reward"=> (($item->points / $total) * 0.0175),
+                "total_space" => (($total_space / 10.14) * 1.04951163)
             ];
         }));
     }
