@@ -68,7 +68,7 @@ class FarmerController extends Controller
 
         return response()->json(Farmer::get()->map(function ($item) use ($block_timestamp, $total) {
             $total_space = 0;
-            $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'ASC')->first();
+            $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'DESC')->first();
             if ($results) {
                 $time_now = 1630964922;
 
@@ -86,7 +86,7 @@ class FarmerController extends Controller
                 "points" => $item->points,
                 "percent"=> $item->points / $total,
                 "est_reward"=> ($item->points / $total) * 0.0175,
-                "total_space" => ($total_space / 10.14) * 1.09951163
+                "total_space" => $total_space
             ];
         }));
     }
