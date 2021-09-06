@@ -28,16 +28,16 @@ class FarmerController extends Controller
                 $time_now = $milliseconds = round(microtime(true) * 1000);
 
                 if ($results->timestamp < $block_timestamp) {
-                    $farmerSpace = $item->points / ((0.001157) * ($time_now - $results->timestamp));
+                    $farmerSpace = $item->points / ((0.0001157) * ($time_now - $results->timestamp));
 
                 } else {
-                    $farmerSpace = $item->points / ((0.001157) * ($time_now - $block_timestamp));
+                    $farmerSpace = $item->points / ((0.0001157) * ($time_now - $block_timestamp));
                 }
                 $total_space += $farmerSpace;
             }
         });
 
-        return response()->json(["totalSpace" => $total_space]);
+        return response()->json(["totalSpace" => ($total_space / 10.14) * 1.09951163]);
     }
 
     /**
@@ -57,10 +57,10 @@ class FarmerController extends Controller
                 $time_now = $milliseconds = round(microtime(true) * 1000);
 
                 if ($results->timestamp < $block_timestamp) {
-                    $farmerSpace = $item->points / ((0.001157) * ($time_now - $results->timestamp));
+                    $farmerSpace = $item->points / ((0.0001157) * ($time_now - $results->timestamp));
 
                 } else {
-                    $farmerSpace = $item->points / ((0.001157) * ($time_now - $block_timestamp));
+                    $farmerSpace = $item->points / ((0.0001157) * ($time_now - $block_timestamp));
                 }
                 $total_space += $farmerSpace;
             }
@@ -68,7 +68,7 @@ class FarmerController extends Controller
             return [
                 "launcher_id" => $item->launcher_id,
                 "points" => $item->points,
-                "total_space" => $total_space
+                "total_space" => ($total_space / 10.14) * 1.09951163
             ];
         }));
     }
