@@ -47,6 +47,7 @@ class FarmerController extends Controller
         return response()->json(["total_space" => ((($total_space / 10.14) * 1.04951163) / 1024), "active_farmers" => $count, "block" => $block_timestamp]);
     }
 
+
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +55,7 @@ class FarmerController extends Controller
      */
     public function getFarmers()
     {
-        $farmers = Farmer::get();
+        $farmers = Farmer::where('points', '>', 0)->orderBy('points', 'DESC')->get();
         $block_partial = Farmer::where('launcher_id', '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b')->where('points', '<', 3)->first();
         if ($block_partial) {
             $block_timestamp = Partial::where('launcher_id', '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b')->orderBy('timestamp', 'DESC')->first()->timestamp;
