@@ -44,7 +44,7 @@ class FarmerController extends Controller
             }
         });
 
-        return response()->json(["totalSpace" => (($total_space / 10.14) * 1.04951163), "active_farmers" => $count, "block" => $block_timestamp]);
+        return response()->json(["total_space" => ((($total_space / 10.14) * 1.04951163) / 1024), "active_farmers" => $count, "block" => $block_timestamp]);
     }
 
     /**
