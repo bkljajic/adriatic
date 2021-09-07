@@ -55,7 +55,7 @@ class FarmerController extends Controller
      */
     public function getFarmers()
     {
-        $farmers = Farmer::where('points', '>', 0)->orderBy('points', 'DESC')->get();
+        $farmers = Farmer::get();
         $block_partial = Farmer::where('launcher_id', '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b')->where('points', '<', 3)->first();
         if ($block_partial) {
             $block_timestamp = Partial::where('launcher_id', '2d2fe94bc590f4f96289fac3a4ab9f80ac15deb9489272ab84a28a45294d8d2b')->orderBy('timestamp', 'DESC')->first()->timestamp;
@@ -73,7 +73,7 @@ class FarmerController extends Controller
         });
         $total /= 100;
 
-        return response()->json(Farmer::get()->map(function ($item) use ($block_timestamp, $total) {
+        return response()->json(Farmer::where('points', '>', 0)->orderBy('points', 'DESC')->get()->map(function ($item) use ($block_timestamp, $total) {
             $total_space = 0;
             $results = Partial::where('launcher_id', $item->launcher_id)->orderBy('timestamp', 'DESC')->first();
             if ($results) {
